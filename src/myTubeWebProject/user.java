@@ -1,6 +1,6 @@
 package myTubeWebProject;
 
-public class user {
+public class User {
 	//instance fields
 	private String name; // nom du membre myTube
 	// avatar

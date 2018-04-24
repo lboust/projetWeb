@@ -1,7 +1,7 @@
 package myTubeWebProject;
 
 
-public class comment {
+public class Comment {
 	//instance fields
 	private String message; //texte du commentaire
 	//methods
@@ -14,8 +14,8 @@ public class comment {
 		
 	}
 	//répond au comentaire par un commentaire
-	public comment answer(String message) {
-		comment answerToComment = new comment();
+	public Comment answer(String message) {
+		Comment answerToComment = new Comment();
 		answerToComment.message = message;
 		return answerToComment;
 	}

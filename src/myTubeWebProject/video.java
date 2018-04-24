@@ -1,6 +1,6 @@
 package myTubeWebProject;
 
-public class video {
+public class Video {
 	//instance fields
 	private String title; // titre de la vidéo
 	private String url; // lien youtube
@@ -12,6 +12,8 @@ public class video {
 	private String format; // format de vidéo
 	private long numberOfViews; //nombre de vues de la vidéo
 	private int numberOfComments; //nombre de commentaires d'une vidéo
+	private int id; //clé
+	private String capture; //src de la miniature
 	//methods
 	//lit la vidéo à un certain temps
 	public void play(int playingTime) {
@@ -125,6 +127,18 @@ public class video {
 	}
 	public void setNumberOfComments(int numberOfComments) {
 		this.numberOfComments = numberOfComments;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getCapture() {
+		return capture;
+	}
+	public void setCapture(String capture) {
+		this.capture = capture;
 	}
 	
 	
