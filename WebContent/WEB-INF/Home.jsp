@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="reset.css">
-<link rel="stylesheet" href="MyTubeDraft.css">
+<link rel="stylesheet" href="Home.css">
 <title>MyTube</title>
 </head>
 <body>
@@ -25,7 +26,7 @@
                             </div></li>
                     <li><a class="menu-horiz__item" href="">Mettre en ligne</a></li>
                     <li><a class="menu-horiz__item" href="">Applications</a></li>
-                    <li><a class="menu-horiz__item" href="">Paramètres</a></li>
+                    <li><a class="menu-horiz__item" href="">ParamÃ¨tres</a></li>
                     <li><a class="menu-horiz__item" href="">SE CONNECTER</a></li>
             </ol>
     </div>
@@ -37,12 +38,12 @@
             <li><a class="menu-verti__item" id="theBest" href="">LE MEILLEUR DE YOUTUBE</a></li>
             <li><a class="menu-verti__item" href="">Musique</a></li>
             <li><a class="menu-verti__item" href="">Sport</a></li>
-            <li><a class="menu-verti__item" href="">Jeux Vidéo et autres</a></li>
+            <li><a class="menu-verti__item" href="">Jeux VidÃ©o et autres</a></li>
             <li><a class="menu-verti__item" href="">Films</a></li>
-            <li><a class="menu-verti__item" href="">Emissions télévisées</a></li>
-            <li><a class="menu-verti__item" href="">Actualités</a></li>
+            <li><a class="menu-verti__item" href="">Emissions tÃ©lÃ©visÃ©es</a></li>
+            <li><a class="menu-verti__item" href="">ActualitÃ©s</a></li>
             <li><a class="menu-verti__item" href="">En direct</a></li>
-            <li><a class="menu-verti__item" href="">360° Video</a></li>
+            <li><a class="menu-verti__item" href="">360Â° Video</a></li>
         </ol>
     </div>
     <section id="conteneur">
@@ -51,32 +52,26 @@
                 <div class="element" >
                 	<c:forEach items="${videoList}" var="item">
                 	<div class="video">
-                		<iframe class="format-video" src="${item.url}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                	<video src="${item.url}" autoplay poster="C:\Users\Administrateur\eclipse-workspace\MyTubeWebProject\images/image1.PNG"></video>
+                	<!-- <video src="${item.url}" autoplay poster="${item.capture}"></video> -->
+                	
   					</div>
-					</c:forEach>    
-                    <div class="video">
-                        <iframe class="format-video" src="https://www.youtube.com/embed/PSLBKeZnPyE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>                 
-                    </div>
-                    <div class="video">
-                        <iframe class="format-video" src="https://www.youtube.com/embed/NDrAng2nueI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    </div>
-                    <div class="video">
-                        <iframe class="format-video" src="https://www.youtube.com/embed/sdlWIZSsmhs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    </div>
-                    <div class="video">
-                        <iframe class="format-video" src="https://www.youtube.com/embed/5o4r1hlI5tI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    </div>
-                    <div class="video">
-                    <iframe class="format-video" src="https://www.youtube.com/embed/37StRy0LEbI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    </div>
+					</c:forEach>  
+					  
+                    
                 </div>
             </div>
             <div class="ligne-title"> 
-                    <h2>${titre1}</h2>
-                    <h2>2 CHANSONS A ÉCOUTER EN MÊME TEMPS - Tai Reflections</h2>
+            	<c:forEach items="${videoList}" var="item">
+                	<div class="video">
+                		<h2>${item.title}</h2>
+  					</div>
+				</c:forEach> 
+                    <%-- <h2>${titre1}</h2>
+                    <h2>2 CHANSONS A Ã‰COUTER EN MÃŠME TEMPS - Tai Reflections</h2>
                     <h2>RECETTES : 4 BREAKFAST IDEAS</h2>
                     <h2>LA PISCINE - PAROLE DE RATON LAVEUR</h2>
-                    <h2>OrelSan - La pluie (feat. Stromae) [CLIP OFFICIEL]</h2>
+                    <h2>OrelSan - La pluie (feat. Stromae) [CLIP OFFICIEL]</h2> --%>
             </div>
         <div class="ligne-video">
             <h1 class="title">Recommandations</h1>
@@ -99,8 +94,8 @@
                 </div>
             </div>
         </div>
-        <div class="ligne-video">
-            <h1 class="title">Videos mises en ligne récemment</h1>
+        <!-- <div class="ligne-video">
+            <h1 class="title">Videos mises en ligne rÃ©cemment</h1>
             <div class="element" >   
                 <div class="video">
                         <iframe class="format-video" src="https://www.youtube.com/embed/5VjC0KerJCI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -114,7 +109,7 @@
                 <div class="video">
                 </div>     
             </div>
-        </div>
+        </div> -->
     </section>
 </body>
 </html>

@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class myTubeServlet
  */
-@WebServlet("/myTubeServlet")
-public class myTubeServlet extends HttpServlet {
+@WebServlet("/HomePage")
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public myTubeServlet() {
+    public HomeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,26 +34,43 @@ public class myTubeServlet extends HttpServlet {
 		
 		String pathInfo= request.getPathInfo();
 		
-		video video1 = new video();
-		video1.setAuthor("Marrionnaud France");
-		video1.setDuration(10);
-		video1.setNumberOfComments(1);
-		video1.setNumberOfViews(3844);
-		video1.setPublicationDate("1 sept. 2017");
-		video1.setTitle("KENZO - KENZO WORLD");
-		video1.setUrl("https://www.youtube.com/embed/PSLBKeZnPyE");
+		//TODO construire les 10 vidéos avec le constructeur
+				Video video1 = new Video();
+				video1.setAuthor("Marrionnaud France");
+				video1.setDuration(10);
+				video1.setNumberOfComments(318);
+				video1.setNumberOfViews(85508);
+				video1.setPublicationDate("15 avr. 2018");
+				video1.setTitle("2 CHANSONS A ECOUTER EN MEME TEMPS - Tai Reflections");
+				video1.setUrl("https://www.youtube.com/embed/PSLBKeZnPyE");
+				video1.setId(1);
+				video1.setCapture("image1.PNG");
+				//video1.setCapture("C:\Users\Administrateur\eclipse-workspace\MyTubeWebProject\images/image1.PNG");
 		
-		request.setAttribute("titre1", video1.getTitle());
+				
+				Video video2 = new Video();
+				video2.setAuthor("TAI REFLECTIONS / STARRYSKY");
+				video2.setDuration(606);
+				video2.setNumberOfComments(1);
+				video2.setNumberOfViews(3844);
+				video2.setPublicationDate("1 sept. 2017");
+				video2.setTitle("KENZO - KENZO WORLD");
+				video2.setUrl("https://www.youtube.com/embed/NDrAng2nueI");
+				video2.setId(2);
+				//test setAttribute
+				request.setAttribute("titre1", video1.getTitle());
+
+
 		
-		
-		ArrayList<video> videoList = new ArrayList<>();
+		ArrayList<Video> videoList = new ArrayList<>();
 		videoList.add(video1);
+		videoList.add(video2);
 		request.setAttribute("videoList", videoList);
 		
 		
 		
 		if (pathInfo == null ) {
-			this.getServletContext().getRequestDispatcher("/WEB-INF/MyTubeWebProject.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request, response);
 			
 		
 		} else {
