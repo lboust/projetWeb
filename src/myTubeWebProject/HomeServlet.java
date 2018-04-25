@@ -41,10 +41,10 @@ public class HomeServlet extends HttpServlet {
 				video1.setNumberOfComments(318);
 				video1.setNumberOfViews(85508);
 				video1.setPublicationDate("15 avr. 2018");
-				video1.setTitle("2 CHANSONS A ECOUTER EN MEME TEMPS - Tai Reflections");
-				video1.setUrl("https://www.youtube.com/embed/PSLBKeZnPyE");
+				video1.setTitle("KENZO - KENZO WORLD");
+				video1.setUrl("https://www.youtube.com/watch?v=PSLBKeZnPyE");
 				video1.setId(1);
-				video1.setCapture("C:\Users\Administrateur\eclipse-workspace\MyTubeWebProject\images/image1.PNG");
+				video1.setCapture("images/image1.PNG");
 
 				Video video2 = new Video();
 				video2.setAuthor("TAI REFLECTIONS / STARRYSKY");
@@ -52,10 +52,10 @@ public class HomeServlet extends HttpServlet {
 				video2.setNumberOfComments(1);
 				video2.setNumberOfViews(3844);
 				video2.setPublicationDate("1 sept. 2017");
-				video2.setTitle("KENZO - KENZO WORLD");
-				video2.setUrl("https://www.youtube.com/embed/NDrAng2nueI");
+				video2.setTitle("2 CHANSONS A ECOUTER EN MEME TEMPS - Tai Reflections");
+				video2.setUrl("https://www.youtube.com/watch?v=NDrAng2nueI");
 				video2.setId(2);
-				video2.setCapture()"C:\Users\Administrateur\eclipse-workspace\MyTubeWebProject\images/image2.PNG";
+				video2.setCapture("images/image2.PNG");
 				
 				Video video3 = new Video();
 				video3.setAuthor("EnjoyPhoenix");
@@ -66,7 +66,7 @@ public class HomeServlet extends HttpServlet {
 				video3.setTitle("RECETTES: 4 BREAKFAST IDEAS");
 				video3.setUrl("https://www.youtube.com/watch?v=sdlWIZSsmhs");
 				video3.setId(3);
-				video3.setCapture()"C:\Users\Administrateur\eclipse-workspace\MyTubeWebProject\images/image3.PNG";
+				video3.setCapture("images/image3.PNG");
 				
 				Video video4 = new Video();
 				video4.setAuthor("Parole de chat");
@@ -77,7 +77,7 @@ public class HomeServlet extends HttpServlet {
 				video4.setTitle("LA PISCINE - PAROLE DE RATON LAVEUR");
 				video4.setUrl("https://www.youtube.com/watch?v=5o4r1hlI5tI");
 				video4.setId(4);
-				video4.setCapture()"C:\Users\Administrateur\eclipse-workspace\MyTubeWebProject\images/image4.PNG";
+				video4.setCapture("images/image4.PNG");
 				
 				Video video5 = new Video();
 				video5.setAuthor("orelsan");
@@ -88,7 +88,7 @@ public class HomeServlet extends HttpServlet {
 				video5.setTitle("Orelsan - La pluie (feat. Stromae) [CLIP OFFICIEL]");
 				video5.setUrl("https://www.youtube.com/watch?v=37StRy0LEbI");
 				video5.setId(5);
-				video5.setCapture()"C:\Users\Administrateur\eclipse-workspace\MyTubeWebProject\images/image5.PNG";
+				video5.setCapture("images/image5.PNG");
 
 		ArrayList<Video> videoList = new ArrayList<>();
 		videoList.add(video1);

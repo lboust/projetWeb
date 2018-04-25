@@ -5,7 +5,7 @@ public class Video {
 	private String title; // titre de la vidéo
 	private String url; // lien youtube
 	private int duration; // durée totale de la vidéo en s
-	private int playingTime; // temps de lecture en s
+	private String description; // texte de description
 	private String publicationDate; //date et heure de publication
 	private String author; //nom du membre MyTube qui a publié la vidéo
 	private String type; // type de vidéo
@@ -86,12 +86,8 @@ public class Video {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-	public int getPlayingTime() {
-		return playingTime;
-	}
-	public void setPlayingTime(int playingTime) {
-		this.playingTime = playingTime;
-	}
+
+
 	public String getPublicationDate() {
 		return publicationDate;
 	}
@@ -140,7 +136,28 @@ public class Video {
 	public void setCapture(String capture) {
 		this.capture = capture;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
-	
+	/*public Video(String title, String url, int duration, String description, String publicationDate, String author,
+			String type, String format, long numberOfViews, int numberOfComments, int id, String capture) {
+		super();
+		this.title = title;
+		this.url = url;
+		this.duration = duration;
+		this.description = description;
+		this.publicationDate = publicationDate;
+		this.author = author;
+		this.type = type;
+		this.format = format;
+		this.numberOfViews = numberOfViews;
+		this.numberOfComments = numberOfComments;
+		this.id = id;
+		this.capture = capture;
+	}*/
 
 }
