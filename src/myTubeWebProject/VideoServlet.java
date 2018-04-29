@@ -36,7 +36,7 @@ public class VideoServlet extends HttpServlet {
 
 		String pathInfo = request.getPathInfo();
 		// TODO construire les 10 vidéos avec le constructeur
-		Video video1 = new Video();
+/*		Video video1 = new Video();
 		video1.setAuthor("Marrionnaud France");
 		video1.setDuration(10);
 		video1.setNumberOfComments(318);
@@ -97,7 +97,22 @@ public class VideoServlet extends HttpServlet {
 		videoList.add(video3);
 		videoList.add(video4);
 		videoList.add(video5);
-		request.setAttribute("videoList", videoList);
+		request.setAttribute("videoList", videoList);*/
+		VideoRepository videoRepo = new VideoRepository();
+		
+		ArrayList<Video> videoList = new ArrayList<>();
+		videoList = videoRepo.findAllVideos();
+		request.setAttribute("allVideoList", allVideoList)
+		
+		ArrayList<Video> trendingVideoList = new ArrayList<>();
+		trendingVideoList = videoRepo.findTrending();
+		request.setAttribute("trendingVideoList", trendingVideoList)
+		
+		ArrayList<Video> recommendedVideoList = new ArrayList<>();
+		recommendedVideoList = videoRepo.findRecommended();
+		request.setAttribute("recommendedVideoList", recommendedVideoList)
+		
+		
 
 		if (pathInfo == null) {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/Video.jsp").forward(request, response);
