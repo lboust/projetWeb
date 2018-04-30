@@ -1,5 +1,9 @@
 package myTubeWebProject;
 
+import java.util.List;
+
+
+
 public class Video {
 	//instance fields
 	private String title; // titre de la vidéo
@@ -7,13 +11,15 @@ public class Video {
 	private int duration; // durée totale de la vidéo en s
 	private String description; // texte de description
 	private String publicationDate; //date et heure de publication
-	private String author; //nom du membre MyTube qui a publié la vidéo
+	private User author; //nom du membre MyTube qui a publié la vidéo
 	private String type; // type de vidéo
 	private String format; // format de vidéo
 	private long numberOfViews; //nombre de vues de la vidéo
 	private int numberOfComments; //nombre de commentaires d'une vidéo
 	private int id; //clé
 	private String capture; //src de la miniature
+	private Integer user_id; //clé
+	private List<Comment> comments; // liste des commentaires
 	//methods
 	//lit la vidéo à un certain temps
 	public void play(int playingTime) {
@@ -94,12 +100,7 @@ public class Video {
 	public void setPublicationDate(String publicationDate) {
 		this.publicationDate = publicationDate;
 	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
+
 	public String getType() {
 		return type;
 	}
@@ -141,6 +142,24 @@ public class Video {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public User getAuthor() {
+		return author;
+	}
+	public void setAuthor(User author) {
+		this.author = author;
+	}
+	public Integer getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(Integer user_id) {
+		this.user_id = user_id;
+	}
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 	
 	/*public Video(String title, String url, int duration, String description, String publicationDate, String author,
