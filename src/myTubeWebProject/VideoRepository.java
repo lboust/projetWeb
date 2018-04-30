@@ -9,31 +9,30 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class VideoRepository {
 	//method mapResultSetToVideo
 	// construit l'objet Video à partir des colonnes de la base de donnée
-	private Video mapResultSetToVideo(ResultSet rsVideo, ResultSet rsUser) throws SQLException  {
+	private Video mapResultSetToVideo(ResultSet rsVideo) throws SQLException  {
 		Video video = new Video();
-		video.setId(rsVideo.getInt("id"));
-		video.setTitle(rsVideo.getString("title"));
-		video.setUrl(rsVideo.getString("url"));
-		video.setDuration(rsVideo.getInt("duration"));
-		video.setPublicationDate(rsVideo.getString("publicationDate"));
-		video.setType(rsVideo.getString("type"));
-		video.setNumberOfViews(rsVideo.getInt("numberofViews"));
-		video.setCapture(rsVideo.getString("capture"));
-		video.setDescription(rsVideo.getString("description"));
-		video.setUser_id(rsVideo.getInt("user_id"));
-
-		User user = new User();
-		user.setId(rsUser.getInt("id"));
-		user.setUsername(rsUser.getString("username"));
-		user.setUseremail(rsUser.getString("email"));
-		user.setUserpassword(rsUser.getString("password"));
+		video.setId(rsVideo.getInt("video.id"));
+		video.setTitle(rsVideo.getString("video.title"));
+		video.setUrl(rsVideo.getString("video.url"));
+		video.setDuration(rsVideo.getInt("video.duration"));
+		video.setPublicationDate(rsVideo.getString("video.publicationDate"));
+		video.setType(rsVideo.getString("video.type"));
+		video.setNumberOfViews(rsVideo.getInt("video.numberofViews"));
+		video.setCapture(rsVideo.getString("video.capture"));
+		video.setDescription(rsVideo.getString("video.description"));
+		video.setUser_id(rsVideo.getInt("video.user_id"));
 		
-		video.setAuthor(user);
+		User author = new User(rsVideo.getInt("user.id"), rsVideo.getString("user.username"), rsVideo.getString("user.email"), rsVideo.getString("user.password"));
+		video.setAuthor(author);
+		
+		List<Comment> commentList= new ArrayList<>();
+		commentList = video.getComments();
+		Comment comment = new Comment(rsVideo.getInt("commentary.id"), rsVideo.getString("commentary.message"));
+		commentList.add(comment);
+		video.setComments(commentList);
 		
 		return video;
 	}
@@ -44,27 +43,15 @@ public class VideoRepository {
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mytube?serverTimezone=UTC", "root", "rootroot")) {
 
 			PreparedStatement pstmtVideo = 
-					conn.prepareStatement("SELECT * FROM video WHERE id = ?");
+					conn.prepareStatement("SELECT video.id, video.title, video.url, video.duration, video.publicationDate, video.author, video.type, video.numberOfViews, video.numberOfComments, video.capture, video.description, video.user_id, user.id, user.username, user.email, user.password, commentary.id, commentary.message, commentary.user_id, commentary.video_id FROM user INNER JOIN video ON video.user_id = ? LEFT OUTER JOIN commentary ON video.id = commentary.video_id;");
 			pstmtVideo.setInt(1, id);
-			
 			ResultSet rsVideo = pstmtVideo.executeQuery(); // ligne de la table video à l'id demandé
+			
 			if(! rsVideo.next()) { 
 				return null; 
 			}
-			PreparedStatement pstmtUser = 
-					conn.prepareStatement("SELECT * FROM user WHERE id = ?");
-			pstmtUser.setInt(1, rsVideo.getInt("user_id"));
 			
-			ResultSet rsUser = pstmtUser.executeQuery(); // ligne de la table user où l'id est égal à l'user_id de la table video
-						
-			 // contruction de la vidéo à partir des attributs video et user
-			if(! rsUser.next()) { 
-				return null; 
-			}
-			
-			
-			
-			return mapResultSetToVideo(rsVideo, rsUser);
+			return mapResultSetToVideo(rsVideo);
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -75,37 +62,17 @@ public class VideoRepository {
 	 * @return liste de toutes les videos
 	 */
 	public List<Video> findAllVideos() {
+		
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mytube?serverTimezone=UTC", "root", "rootroot")) {
+			Statement stmt = conn.createStatement();			
+			ResultSet rsVideo = stmt.executeQuery("SELECT video.id, video.title, video.url, video.duration, video.publicationDate, video.author, video.type, video.numberOfViews, video.numberOfComments, video.capture, video.description, video.user_id, user.id, user.username, user.email, user.password, commentary.id, commentary.message, commentary.user_id, commentary.video_id FROM user INNER JOIN video ON video.user_id = user.id LEFT OUTER JOIN commentary ON video.id = commentary.video_id;");
 			
-			Statement stmtVideo = conn.createStatement();			
-			ResultSet rsVideo = stmtVideo.executeQuery("SELECT * FROM video");
 			
-			if(! rsVideo.next()) { 
-				return null; 
-			}
-			PreparedStatement pstmtUser = 
-					conn.prepareStatement("SELECT * FROM user WHERE id = ?");
-			pstmtUser.setInt(1, rsVideo.getInt("user_id"));
-			
-			ResultSet rsUser = pstmtUser.executeQuery(); 
-			if(! rsUser.next()) { 
-				return null; 
-			}
-			PreparedStatement pstmtComment = 
-					conn.prepareStatement("SELECT * FROM commentary WHERE video_id = ?");
-			pstmtComment.setInt(1, rsVideo.getInt("id"));
-			
-			ResultSet rsComment = pstmtComment.executeQuery(); // ligne de la table user où l'id est égal à l'user_id de la table video
-						
-			 // contruction de la vidéo à partir des attributs video et user
-			if(! rsComment.next()) { 
-				return null; 
-			}
-			
+		
 			List<Video> videoList = new ArrayList<>();
 			
 			while(rsVideo.next()) {			
-				Video video = mapResultSetToVideo(rsVideo, rsUser);
+				Video video = mapResultSetToVideo(rsVideo);
 				videoList.add(video);
 			}
 			
@@ -124,26 +91,15 @@ public class VideoRepository {
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mytube?serverTimezone=UTC", "root", "rootroot")) {
 
 			PreparedStatement pstmt = 
-					conn.prepareStatement("SELECT * FROM video WHERE type = ?");
+					conn.prepareStatement("SELECT video.id, video.title, video.url, video.duration, video.publicationDate, video.author, video.type, video.numberOfViews, video.numberOfComments, video.capture, video.description, video.user_id, user.id, user.username, user.email, user.password FROM video INNER JOIN user ON video.user_id = user.id AND video.type= ?");
 			pstmt.setString(1, "trending");
 
 			ResultSet rsVideo = pstmt.executeQuery();
-			if(! rsVideo.next()) { 
-				return null; 
-			}
-			PreparedStatement pstmtUser = 
-					conn.prepareStatement("SELECT * FROM user WHERE id = ?");
-			pstmtUser.setInt(1, rsVideo.getInt("user_id"));
-			
-			ResultSet rsUser = pstmtUser.executeQuery(); 
-			if(! rsUser.next()) { 
-				return null; 
-			}
-			
+	
 			List<Video> videoList = new ArrayList<>();
 			
 			while(rsVideo.next()) {			
-				Video video = mapResultSetToVideo(rsVideo, rsUser);
+				Video video = mapResultSetToVideo(rsVideo);
 				videoList.add(video);
 			}
 			
@@ -153,6 +109,7 @@ public class VideoRepository {
 			throw new RuntimeException(e);
 		}
 	}
+	
 	//method findRecommended()
 	//ajoute la video à la liste de videos recommandées
 	public List<Video> findRecommended() {
@@ -160,27 +117,16 @@ public class VideoRepository {
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mytube?serverTimezone=UTC", "root", "rootroot")) {
 
 			PreparedStatement pstmt = 
-					conn.prepareStatement("SELECT * FROM video WHERE type = ?");
+					conn.prepareStatement("SELECT video.id, video.title, video.url, video.duration, video.publicationDate, video.author, video.type, video.numberOfViews, video.numberOfComments, video.capture, video.description, video.user_id, user.id, user.username, user.email, user.password FROM video INNER JOIN user ON video.user_id = user.id AND video.type= ?");
 			pstmt.setString(1, "recommended");
 
 
 			ResultSet rsVideo = pstmt.executeQuery();
-			if(! rsVideo.next()) { 
-				return null; 
-			}
-			PreparedStatement pstmtUser = 
-					conn.prepareStatement("SELECT * FROM user WHERE id = ?");
-			pstmtUser.setInt(1, rsVideo.getInt("user_id"));
-			
-			ResultSet rsUser = pstmtUser.executeQuery(); 
-			if(! rsUser.next()) { 
-				return null; 
-			}
-			
+	
 			List<Video> videoList = new ArrayList<>();
 			
 			while(rsVideo.next()) {			
-				Video video = mapResultSetToVideo(rsVideo, rsUser);
+				Video video = mapResultSetToVideo(rsVideo);
 				videoList.add(video);
 			}
 			

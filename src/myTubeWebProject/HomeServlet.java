@@ -37,7 +37,7 @@ public class HomeServlet extends HttpServlet {
 		
 		VideoRepository videoRepo = new VideoRepository();
 		
-		List<Video> videoList = new ArrayList<>();
+	List<Video> videoList = new ArrayList<>();
 		videoList = videoRepo.findAllVideos();
 		request.setAttribute("allVideoList", videoList);
 		

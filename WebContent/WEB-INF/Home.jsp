@@ -13,7 +13,7 @@
     <div id="nav-horiz" >
             <ol class="menu-horiz">
                     <li><a class="menu-horiz__item" href="">Menu</a></li>
-                    <li><a class="menu-horiz__item" href=""><img id="logo"src="images/logoTitre"></a></li>
+                    <li><a class="menu-horiz__item" href=""><img id="logo"src="images/my_tube.png"></a></li>
                     <li><div class="menu-horiz__item" href="" id="recherche">
 
                             <form >
@@ -52,12 +52,9 @@
                 <div class="element" >
                 	<c:forEach items="${trendingVideoList}" var="item">
                 	<div class="video">
-                	<video class="format-video" src="${item.url}" autoplay poster="${item.capture}" href="http://localhost:8080/MyTubeWebProject/VideoPage"></video>
-                	
+                	<video class="format-video" src="${item.url}" autoplay poster="${item.capture}" href="http://localhost:8080/MyTubeWebProject/VideoPage"></video>                	
   					</div>
-					</c:forEach>  
-					  
-                    
+					</c:forEach>     
                 </div>
             </div>
             <div class="ligne-title"> 
@@ -69,23 +66,20 @@
             </div>
         <div class="ligne-video">
             <h1 class="title">Recommandations</h1>
-            <div class="element">
-
-                <div class="video">
-                    <iframe class="format-video" src="https://www.youtube.com/embed/kWrRVh-cmAk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen href="http://localhost:8080/MyTubeWebProject/VideoPage"></iframe>
+                           <div class="element" >
+                	<c:forEach items="${recommendedVideoList}" var="item">
+                	<div class="video">
+                	<video class="format-video" src="${item.url}" autoplay poster="${item.capture}" href="http://localhost:8080/MyTubeWebProject/VideoPage"></video>                	
+  					</div>
+					</c:forEach>     
                 </div>
-                <div class="video">
-                    <iframe class="format-video" src="https://www.youtube.com/embed/zsuy9Aw-b38" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
-                <div class="video">
-                    <iframe class="format-video" src="https://www.youtube.com/embed/1z6CW5bduGg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
-                <div class="video">
-                        <iframe class="format-video" src="https://www.youtube.com/embed/DwhR8lsPCxo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
-                <div class="video">
-                        <iframe class="format-video" src="https://www.youtube.com/embed/BbT_Q23SSpc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
+            </div>
+            <div class="ligne-title"> 
+            	<c:forEach items="${recommendedVideoList}" var="item">
+                	<div class="video">
+                		<h2>${item.title}</h2>
+  					</div>
+				</c:forEach>
             </div>
         </div>
         <!-- <div class="ligne-video">

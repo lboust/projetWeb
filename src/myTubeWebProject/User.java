@@ -4,9 +4,18 @@ public class User {
 	// instance fields
 		private Integer id;
 		private String username;
-		private String useremail;
-		private String userpassword;
+		private String email;
+		private String password;
 		
+		//constructor		
+		public User(Integer id, String username, String email, String password) {
+			super();
+			this.id = id;
+			this.username = username;
+			this.email = email;
+			this.password = password;
+		}
+
 		// getters and setters
 		public Integer getId() {
 			return id;
@@ -24,19 +33,21 @@ public class User {
 			this.username = username;
 		}
 
-		public String getUseremail() {
-			return useremail;
+		public String getEmail() {
+			return email;
 		}
 
-		public void setUseremail(String useremail) {
-			this.useremail = useremail;
+		public void setEmail(String email) {
+			this.email = email;
 		}
 
-		public String getUserpassword() {
-			return userpassword;
+		public String getPassword() {
+			return password;
 		}
 
-		public void setUserpassword(String userpassword) {
-			this.userpassword = userpassword;
+		public void setPassword(String password) {
+			this.password = password;
 		}
+
+
 }

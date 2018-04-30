@@ -13,7 +13,6 @@ public class Video {
 	private String publicationDate; //date et heure de publication
 	private User author; //nom du membre MyTube qui a publié la vidéo
 	private String type; // type de vidéo
-	private String format; // format de vidéo
 	private long numberOfViews; //nombre de vues de la vidéo
 	private int numberOfComments; //nombre de commentaires d'une vidéo
 	private int id; //clé
@@ -107,12 +106,7 @@ public class Video {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getFormat() {
-		return format;
-	}
-	public void setFormat(String format) {
-		this.format = format;
-	}
+
 	public long getNumberOfViews() {
 		return numberOfViews;
 	}
@@ -162,21 +156,5 @@ public class Video {
 		this.comments = comments;
 	}
 	
-	/*public Video(String title, String url, int duration, String description, String publicationDate, String author,
-			String type, String format, long numberOfViews, int numberOfComments, int id, String capture) {
-		super();
-		this.title = title;
-		this.url = url;
-		this.duration = duration;
-		this.description = description;
-		this.publicationDate = publicationDate;
-		this.author = author;
-		this.type = type;
-		this.format = format;
-		this.numberOfViews = numberOfViews;
-		this.numberOfComments = numberOfComments;
-		this.id = id;
-		this.capture = capture;
-	}*/
 
 }

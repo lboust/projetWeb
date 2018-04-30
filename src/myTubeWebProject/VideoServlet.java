@@ -41,17 +41,11 @@ public class VideoServlet extends HttpServlet {
 		
 		List<Video> videoList = new ArrayList<>();
 		videoList = videoRepo.findAllVideos();
-		request.setAttribute("allVideoList", videoList);
+		request.setAttribute("allVideosList", videoList);
 		
-		List<Video> trendingVideoList = new ArrayList<>();
-		trendingVideoList = videoRepo.findTrending();
-		request.setAttribute("trendingVideoList", trendingVideoList);
-		
-		List<Video> recommendedVideoList = new ArrayList<>();
-		recommendedVideoList = videoRepo.findRecommended();
-		request.setAttribute("recommendedVideoList", recommendedVideoList);
-		
-		
+		Video currentVideo = new Video();
+		currentVideo=videoRepo.findVideoById(6);
+		request.setAttribute("currentVideo", currentVideo);
 
 		if (pathInfo == null) {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/Video.jsp").forward(request, response);
