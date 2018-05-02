@@ -39,12 +39,10 @@ public class VideoServlet extends HttpServlet {
 		
 		VideoRepository videoRepo = new VideoRepository();
 		
-		List<Video> videoList = new ArrayList<>();
-		videoList = videoRepo.findAllVideos();
+		List<Video> videoList = videoRepo.findAllVideos();
 		request.setAttribute("allVideosList", videoList);
 		
-		Video currentVideo = new Video();
-		currentVideo=videoRepo.findVideoById(6);
+		Video currentVideo = videoRepo.findVideoById(6);
 		request.setAttribute("currentVideo", currentVideo);
 
 		if (pathInfo == null) {
