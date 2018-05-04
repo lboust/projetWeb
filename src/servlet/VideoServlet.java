@@ -43,11 +43,11 @@ public class VideoServlet extends HttpServlet {
 		
 		String pathInfo = request.getPathInfo();
 		
-/*		VideoRepository videoRepo = new VideoRepository();
+		VideoRepository videoRepo = new VideoRepository();
 		
 		Video currentVideo=videoRepo.findVideoById(6);
-		request.setAttribute("currentVideo", currentVideo);*/
-		SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+		request.setAttribute("currentVideo", currentVideo);
+/*		SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
 		Session session = sessionFactory.openSession();	
 			session.getTransaction().begin();
 				Video currentVideo = session.find(Video.class, 6);
@@ -55,7 +55,7 @@ public class VideoServlet extends HttpServlet {
 		session.close();
 	sessionFactory.close();
 	request.setAttribute("currentVideo", currentVideo);
-
+*/
 
 		
 		

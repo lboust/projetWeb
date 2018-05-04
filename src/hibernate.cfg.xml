@@ -5,7 +5,7 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sakila?serverTimezone=UTC</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mytube?serverTimezone=UTC</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">rootroot</property>
 		<property name="hibernate.show_sql">true</property>
@@ -17,6 +17,8 @@
 		</property>
 
 		<!-- mapping -->
-		<mapping class="orm.Customer" />
+		<mapping class="hibernate.Video" />
+		<mapping class="hibernate.User" />
+		<mapping class="hibernate.Commentary" />
 	</session-factory>
 </hibernate-configuration>
