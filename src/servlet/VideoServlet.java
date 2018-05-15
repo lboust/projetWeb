@@ -47,17 +47,6 @@ public class VideoServlet extends HttpServlet {
 		
 		Video currentVideo=videoRepo.findVideoById(6);
 		request.setAttribute("currentVideo", currentVideo);
-/*		SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
-		Session session = sessionFactory.openSession();	
-			session.getTransaction().begin();
-				Video currentVideo = session.find(Video.class, 6);
-			session.getTransaction().commit();
-		session.close();
-	sessionFactory.close();
-	request.setAttribute("currentVideo", currentVideo);
-*/
-
-		
 		
 		if (pathInfo == null) {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/VideoWithHibernate.jsp").forward(request, response);
